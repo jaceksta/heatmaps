@@ -83,7 +83,7 @@ with tab4:
 
     col3, col4 = st.columns(2)
     col3.write(f"Sieć podań {home_team}")
-    #col3.pyplot(create_passnetwork(events, home_team))
+    col3.pyplot(create_passnetwork(events, home_team))
     col4.write(f"Sieć podań {away_team}")
     col4.pyplot(create_passnetwork(events, away_team))
     
