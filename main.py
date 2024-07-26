@@ -79,7 +79,7 @@ with tab3:
     col2.write(f'Pressing {away_team}')
     col2.pyplot(calculate_pressures(events, away_team))
     
-with tab5:    
+with tab4:    
 
     col3, col4 = st.columns(2)
     col3.write(f"Sieć podań {home_team}")
@@ -87,7 +87,7 @@ with tab5:
     col4.write(f"Sieć podań {away_team}")
     col4.pyplot(create_passnetwork(events, away_team))
     
-with tab4:
+with tab5:
     col7, col8 = tab5.columns(2)
     col7.caption(f"Rozpoczęcie akcji zakończonej strzałem {home_team}")
     col7.pyplot(plot_first_moves(events, home_team))
