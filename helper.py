@@ -99,7 +99,7 @@ def calculate_pressures(events, team_name):
 def create_passnetwork(events, team_name):
     
     team = events[events['team'] == team_name]
-    st.write(team.columns)
+    st.write(team['player'])
     team[['x', 'y']] = team['location'].apply(pd.Series)
 
     tactics = team[~team['tactics'].isnull()][['tactics', 'team']]
