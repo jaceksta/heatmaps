@@ -116,8 +116,8 @@ def create_passnetwork(events, team_name):
     team.sort_values(by=['newsecond'])
     
     # identify the passer and then the recipient, who'll be the playerId of the next action
-    if 'player_id' in team.columns:
-        team['passer'] = team['player_id']
+    if 'player' in team.columns:
+        team['passer'] = team['player']
     else:
         st.error("The column 'player_id' is missing from the data.")
         st.stop()
