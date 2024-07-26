@@ -25,7 +25,7 @@ def get_poland_games():
 
 
 games = get_poland_games()
-
+st.caption("Autor: Jacek Staszak | Data: Statsbomb")
 game_to_analyse = st.selectbox('Select a game', games['match_name'])
 game_id = games[games['match_name'] == game_to_analyse]['match_id'].values[0]
 home_team = games[games['match_name'] == game_to_analyse]['home_team'].values[0]
