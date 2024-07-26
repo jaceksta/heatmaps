@@ -41,11 +41,10 @@ away_xg = shots[shots['team'] == away_team]['shot_xg'].sum()
 result_probabilities = simulate_game(home_xg, away_xg, num_simulations=1000)
 
 
-tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs(['Tabelka', 'Prawdopodobieństwo', 'Podania', 'Pressing', 'Sieć podań', 'Strzały'])
+tab0, tab1, tab2, tab3, tab4 = st.tabs(['Tabelka', 'Prawdopodobieństwo', 'Podania', 'Pressing', 'Strzały'])
 
 with tab0:
     st.write(make_table(events))
-    st.write(events['player'])
 
 with tab1:
     st.plotly_chart(plot_heatmap(result_probabilities, home_team, away_team))
@@ -80,16 +79,9 @@ with tab3:
     col2.write(f'Pressing {away_team}')
     col2.pyplot(calculate_pressures(events, away_team))
     
-with tab4:    
-
-    col3, col4 = st.columns(2)
-    col3.write(f"Sieć podań {home_team}")
-    col3.pyplot(create_passnetwork(events, home_team))
-    col4.write(f"Sieć podań {away_team}")
-    col4.pyplot(create_passnetwork(events, away_team))
     
-with tab5:
-    col7, col8 = tab5.columns(2)
+with tab4:
+    col7, col8 = tab4.columns(2)
     col7.caption(f"Rozpoczęcie akcji zakończonej strzałem {home_team}")
     col7.pyplot(plot_first_moves(events, home_team))
     col7.caption(f"Kluczowe podania {home_team}")
