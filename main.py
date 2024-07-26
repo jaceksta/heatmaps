@@ -45,7 +45,7 @@ tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs(['Tabelka', 'Prawdopodobieństwo', 
 
 with tab0:
     st.write(make_table(events))
-    st.write(events['player']['id'])
+    st.write(events['player'])
 
 with tab1:
     st.plotly_chart(plot_heatmap(result_probabilities, home_team, away_team))
