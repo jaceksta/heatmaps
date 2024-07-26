@@ -7,3 +7,4 @@ seaborn
 mplsoccer==1.2.4
 duckdb
 plotly
+math
