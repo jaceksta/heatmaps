@@ -1,6 +1,8 @@
 import numpy as np
 import plotly.graph_objects as go
+import streamlit as st
 
+@st.cache_data
 def simulate_game(xg_team1, xg_team2, num_simulations=1000):
     max_goals = 5
     result_matrix = np.zeros((max_goals + 1, max_goals + 1))
