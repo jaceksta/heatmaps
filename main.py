@@ -86,12 +86,14 @@ with tab3:
     
     
 with tab4:
+    
+    fig1, fig2 = plot_first_moves(events, home_team, away_team)
     col7, col8 = tab4.columns(2)
     col7.caption(f"Rozpoczęcie akcji zakończonej strzałem {home_team}")
-    col7.pyplot(plot_first_moves(events, home_team))
+    col7.pyplot(fig1)
     col7.caption(f"Kluczowe podania {home_team}")
     col7.pyplot(passes_to_shots(events, home_team, away_team))
     col8.caption(f"Rozpoczęcie akcji zakończonej strzałem {away_team}")
-    col8.pyplot(plot_first_moves(events, away_team))
+    col8.pyplot(fig2)
     col8.caption(f"Kluczowe podania {away_team}")
     col8.pyplot(passes_to_shots(events, away_team, home_team))

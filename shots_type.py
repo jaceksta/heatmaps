@@ -16,18 +16,33 @@ def get_shot_types(events):
     
     return shots_type
 
-def plot_first_moves(events, team):   
+def plot_first_moves(events, home_team, away_team):   
     shots_type = get_shot_types(events)
-    pitch = VerticalPitch(pitch_type ='statsbomb')
+    pitch = VerticalPitch(pitch_type='statsbomb')
 
-    fig,ax = pitch.draw()
-    shots_type[['x', 'y']] = shots_type['location'].apply(pd.Series)
+    fig_size = (6, 10)
+    # Plot for Home Team
+    fig_home, ax_home = pitch.draw(figsize=fig_size)
+    home_team_shots = shots_type[shots_type['team'] == home_team]
+    home_team_shots[['x', 'y']] = home_team_shots['location'].apply(pd.Series)
 
-    for x in shots_type.to_dict(orient = 'records'):
-        if x['team'] ==  team:
-            pitch.scatter(x=x['x'], y=x['y'], ax=ax, s=500*x['shot_statsbomb_xg'],
-                        ec='black', c='red' if (x['type_of_pass'] == 'Interception' or x['type_of_pass'] == 'Pressure' or x['type_of_pass'] == 'Ball Recovery' or x['type_of_pass'] == 'Recovery') else 'black')
-            
-    ax.set_title('Gdzie zaczęły się akcje zakończone strzałem\n - na czerwono odbiór piłki', fontsize = 10, fontfamily = 'monospace')
-    
-    return fig
+    for shot in home_team_shots.to_dict(orient='records'):
+        pitch.scatter(x=shot['x'], y=shot['y'], ax=ax_home, s=500*shot['shot_statsbomb_xg'],
+                      ec='black', c='red' if shot['type_of_pass'] in ['Interception', 'Pressure', 'Ball Recovery', 'Recovery'] else 'black')
+
+    ax_home.set_title(f'{home_team}: Gdzie zaczęły się akcje zakończone strzałem\n - na czerwono odbiór piłki',
+                      fontsize=10, fontfamily='monospace')
+
+    # Plot for Away Team
+    fig_away, ax_away = pitch.draw(figsize=fig_size)
+    away_team_shots = shots_type[shots_type['team'] == away_team]
+    away_team_shots[['x', 'y']] = away_team_shots['location'].apply(pd.Series)
+
+    for shot in away_team_shots.to_dict(orient='records'):
+        pitch.scatter(x=shot['x'], y=shot['y'], ax=ax_away, s=500*shot['shot_statsbomb_xg'],
+                      ec='black', c='red' if shot['type_of_pass'] in ['Interception', 'Pressure', 'Ball Recovery', 'Recovery'] else 'black')
+
+    ax_away.set_title(f'{away_team}: Gdzie zaczęły się akcje zakończone strzałem\n - na czerwono odbiór piłki',
+                      fontsize=10, fontfamily='monospace')
+
+    return fig_home, fig_away
