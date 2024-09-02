@@ -37,12 +37,8 @@ def load_events(game_id):
 
 events = load_events(game_id)
 
-@st.cache_resource
-def get_duckdb_connection():
-    return duckdb.connect(database=':memory:')
 
-conn = get_duckdb_connection()
-shots = conn.sql("select possession, team, max(shot_statsbomb_xg) as shot_xg, pass_type from events where type = 'Shot' group by possession, team, pass_type").df()
+shots = duckdb.sql("select possession, team, max(shot_statsbomb_xg) as shot_xg, pass_type from events where type = 'Shot' group by possession, team, pass_type").df()
 
 home_xg = shots[shots['team'] == home_team]['shot_xg'].sum()
 away_xg = shots[shots['team'] == away_team]['shot_xg'].sum()
