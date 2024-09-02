@@ -31,9 +31,11 @@ game_id = games[games['match_name'] == game_to_analyse]['match_id'].values[0]
 home_team = games[games['match_name'] == game_to_analyse]['home_team'].values[0]
 away_team = games[games['match_name'] == game_to_analyse]['away_team'].values[0]
 
+@st.cache_data
+def load_events(game_id):
+    return sb.events(game_id)
 
-
-events = sb.events(game_id)
+events = load_events(game_id)
 shots = duckdb.sql("select possession, team, max(shot_statsbomb_xg) as shot_xg, pass_type from events where type = 'Shot' group by possession, team, pass_type").df()
 
 home_xg = shots[shots['team'] == home_team]['shot_xg'].sum()
