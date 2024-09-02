@@ -42,6 +42,7 @@ shots = duckdb.sql("select possession, team, max(shot_statsbomb_xg) as shot_xg, 
 
 home_xg = shots[shots['team'] == home_team]['shot_xg'].sum()
 away_xg = shots[shots['team'] == away_team]['shot_xg'].sum()
+
 result_probabilities = simulate_game(home_xg, away_xg, num_simulations=1000)
 
 
