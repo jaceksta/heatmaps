@@ -68,12 +68,12 @@ with tab1:
 with tab2:    
     st.write('Podania przed pole bramkowe')
     st.pyplot(passes_to_penalty(events, home_team, away_team))
-    st.write('Róznica w liczbie podań w róznych strefach')
-    st.pyplot(calculate_pass_diff(events, home_team, away_team))
-    st.write('Flow podań')
-    col9, col10 = st.columns(2)
-    col9.pyplot(pass_flow(events, home_team, away_team))
-    col10.pyplot(pass_flow(events, away_team, home_team))
+    #st.write('Róznica w liczbie podań w róznych strefach')
+    #st.pyplot(calculate_pass_diff(events, home_team, away_team))
+    #st.write('Flow podań')
+    #col9, col10 = st.columns(2)
+    #col9.pyplot(pass_flow(events, home_team, away_team))
+    #col10.pyplot(pass_flow(events, away_team, home_team))
     
     
 with tab3: 
@@ -91,9 +91,9 @@ with tab4:
     col7, col8 = tab4.columns(2)
     col7.caption(f"Rozpoczęcie akcji zakończonej strzałem {home_team}")
     col7.pyplot(fig1)
-    col7.caption(f"Kluczowe podania {home_team}")
-    col7.pyplot(passes_to_shots(events, home_team, away_team))
+    #col7.caption(f"Kluczowe podania {home_team}")
+    #col7.pyplot(passes_to_shots(events, home_team, away_team))
     col8.caption(f"Rozpoczęcie akcji zakończonej strzałem {away_team}")
     col8.pyplot(fig2)
-    col8.caption(f"Kluczowe podania {away_team}")
-    col8.pyplot(passes_to_shots(events, away_team, home_team))
+    #col8.caption(f"Kluczowe podania {away_team}")
+    #col8.pyplot(passes_to_shots(events, away_team, home_team))
